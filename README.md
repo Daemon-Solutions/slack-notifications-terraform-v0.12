@@ -1,3 +1,11 @@
+## Original Repo
+
+This repo was cloned from the following repo
+https://github.com/terraform-aws-modules/terraform-aws-notify-slack/tree/v2.2.0
+
+However the Python Runtime, Python3.6 for the lambda function is no longer supported by AWS.
+The Runtime was updated to Python3.9 and the lambda script was updated accordingly.
+
 # AWS Notify Slack Terraform module
 
 This module creates SNS topic (or use existing one) and a AWS Lambda function which sends notifications to Slack using [incoming webhooks API](https://api.slack.com/incoming-webhooks).
@@ -12,7 +20,7 @@ Terraform 0.11. Pin module version to `~> v1.0`. Submit pull-requests to `terraf
 
 ## Features
 
-- [x] AWS Lambda runtime Python 3.6
+- [x] AWS Lambda runtime Python 3.9
 - [x] Create new SNS topic or use existing one
 - [x] Support plaintext and encrypted version of Slack webhook URL
 - [x] Most of Slack message options are customizable
