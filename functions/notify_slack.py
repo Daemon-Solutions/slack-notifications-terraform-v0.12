@@ -392,7 +392,6 @@ def get_slack_message_payload(
     if "AlarmName" in message:
         notification = format_cloudwatch_alarm(message=message, region=region)
         attachment = notification
-        attachment["text"] = f"@channel :warning: {attachment['text']}"
 
     elif (
         isinstance(message, Dict) and message.get("detail-type") == "GuardDuty Finding"
@@ -401,28 +400,23 @@ def get_slack_message_payload(
             message=message, region=message["region"]
         )
         attachment = notification
-        attachment["text"] = f"@channel :warning: {attachment['text']}"
 
     elif isinstance(message, Dict) and message.get("detail-type") == "AWS Health Event":
         notification = format_aws_health(message=message, region=message["region"])
         attachment = notification
-        attachment["text"] = f"@channel :warning: {attachment['text']}"
 
     elif subject == "Notification from AWS Backup":
         notification = format_aws_backup(message=str(message))
         attachment = notification
-        attachment["text"] = f"@channel :warning: {attachment['text']}"
 
     elif "attachments" in message or "text" in message:
         payload = {**payload, **message}
 
     else:
         attachment = format_default(message=message, subject=subject)
-        attachment["text"] = f"@channel :warning: {attachment['text']}"
 
     if attachment:
         payload["attachments"] = [attachment]  # type: ignore
-        attachment["text"] = f"@channel :warning: {attachment['text']}"
 
     return payload
 

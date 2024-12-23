@@ -19,6 +19,7 @@ variable "lambda_function_name" {
 variable "sns_topic_name" {
   description = "The name of the SNS topic to create"
   type        = string
+  default = "notify_slack"
 }
 
 variable "cloud_watch_alert_name"{
@@ -77,6 +78,13 @@ variable "lambda_function_tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "sns_topic_kms_key_id" {
+  description = "ARN of the KMS key used for enabling SSE on the topic"
+  type        = string
+  default     = ""
+}
+
 
 variable "sns_topic_tags" {
   description = "Additional tags for the SNS topic"
